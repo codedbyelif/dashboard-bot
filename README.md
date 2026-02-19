@@ -5,117 +5,132 @@ Designed by **@codedbyelif**.
 
 ---
 
-## 🇹🇷 Türkçe (Turkish)
+## Turkce (Turkish)
 
-### 📌 Proje Hakkında
-Bu proje, modern bir web arayüzü üzerinden çeşitli bot araçlarını yönetmenizi sağlayan bir dashboard uygulamasıdır. İçerisinde bulunan **Instagram Bot** aracı sayesinde Instagram kullanıcılarını takip edebilir, durumlarını kontrol edebilir ve veritabanı kaydı tutabilirsiniz.
+### Proje Hakkinda
+Bu proje, modern bir web arayuzu uzerinden cesitli bot araclarini yonetmenizi saglayan bir dashboard uygulamasidir. Icerisinde bulunan **Instagram Bot** araci sayesinde Instagram kullanicilarini takip edebilir, durumlarini kontrol edebilir ve veritabani kaydi tutabilirsiniz.
 
-### ✨ Özellikler
+### Ozellikler
 
-#### 🖥️ Dashboard & Arayüz
-- **Modern UI:** Tailwind CSS ve shadcn/ui ile tasarlanmış şık ve karanlık mod (Dark Mode) destekli arayüz.
-- **Responsive Tasarım:** Mobil ve masaüstü uyumlu.
-- **Güvenli Giriş:** Global şifre korumalı giriş ekranı.
+#### Dashboard & Arayuz
+- **Modern UI:** Tailwind CSS ve shadcn/ui ile tasarlanmis sik ve karanlik mod (Dark Mode) destekli arayuz.
+- **Responsive Tasarim:** Mobil ve masaustu uyumlu.
+- **Guvenli Giris:** Global sifre korumali giris ekrani.
 
-#### 🤖 Instagram Bot Aracı
-- **Kullanıcı Takibi:** `/adduser [kullanici_adi]` komutu ile kullanıcıları takip listesine ekleme.
-- **Otomatik Kontrol:** Arka planda çalışan servis ile kullanıcı durumlarını periyodik olarak kontrol etme.
-- **Detaylı Raporlama:** Kullanıcıların aktif, pasif veya silinmiş olup olmadığını görsel olarak raporlama.
-- **Sohbet Arayüzü:** Telegram benzeri komut yapısı ve mesaj formatı ile kolay kullanım.
-- **Veritabanı Kaydı:** Tüm kullanıcı verileri Supabase üzerinde güvenli bir şekilde saklanır.
+#### Instagram Bot Araci
+- **Kullanici Takibi:** `/adduser [kullanici_adi]` komutu ile kullanicilari takip listesine ekleme.
+- **Otomatik Kontrol:** Arka planda calisan servis ile kullanici durumlarini periyodik olarak kontrol etme.
+- **Detayli Raporlama:** Kullanicilarin aktif, pasif veya silinmis olup olmadigini gorsel olarak raporlama.
+- **Sohbet Arayuzu:** Telegram benzeri komut yapisi ve mesaj formati ile kolay kullanim.
+- **Veritabani Kaydi:** Tum kullanici verileri Supabase uzerinde guvenli bir sekilde saklanir.
 
-### 📂 Dosya Yapısı
+### Dosya Yapisi
 
 ```
 .
 ├── public/                 # Statik dosyalar (logo, ikonlar)
 ├── src/
 │   ├── app/
-│   │   ├── api/            # Backend API rotaları
-│   │   │   ├── chat/       # Sohbet ve bot işlemleri
-│   │   │   └── login/      # Giriş işlemi
-│   │   ├── dashboard/      # Dashboard sayfaları
-│   │   │   ├── chat/       # Sohbet arayüzü
-│   │   │   └── page.tsx    # Dashboard ana sayfası
-│   │   ├── layout.tsx      # Ana düzen
-│   │   └── page.tsx        # Giriş sayfası
-│   ├── components/         # React bileşenleri
+│   │   ├── api/            # Backend API rotalari
+│   │   │   ├── chat/       # Sohbet ve bot islemleri
+│   │   │   └── login/      # Giris islemi
+│   │   ├── dashboard/      # Dashboard sayfalari
+│   │   │   ├── chat/       # Sohbet arayuzu
+│   │   │   └── page.tsx    # Dashboard ana sayfasi
+│   │   ├── layout.tsx      # Ana duzen
+│   │   └── page.tsx        # Giris sayfasi
+│   ├── components/         # React bilesenleri
 │   │   ├── dashboard/      # Sidebar, Header vb.
-│   │   └── ui/             # Temel UI elemanları (Button, Input vb.)
-│   └── lib/                # Yardımcı kütüphaneler
-│       ├── instagram.ts    # Instagram kontrol mantığı
-│       ├── instagram-manager.ts # Bot komut yöneticisi
-│       ├── supabase.ts     # Veritabanı bağlantısı
-│       └── tool-runner.ts  # Araç çalıştırma servisi
-├── create_users_table.sql  # Veritabanı kurulum SQL'i
-└── package.json            # Proje bağımlılıkları
+│   │   └── ui/             # Temel UI elemanlari (Button, Input vb.)
+│   └── lib/                # Yardimci kutuphaneler
+│       ├── instagram.ts    # Instagram kontrol mantigi
+│       ├── instagram-manager.ts # Bot komut yoneticisi
+│       ├── supabase.ts     # Veritabani baglantisi
+│       └── tool-runner.ts  # Arac calistirma servisi
+├── create_users_table.sql  # Veritabani kurulum SQL'i
+└── package.json            # Proje bagimliliklari
 ```
 
-### ⚙️ Kurulum ve Yapılandırma
+### Kurulum ve Yapilandirma (Local)
 
-1.  **Projeyi Klonlayın:**
+1.  **Projeyi Klonlayin:**
+    Terminalinizi acin ve asagidaki komutlari sirasiyla girin:
     ```bash
     git clone https://github.com/codedbyelif/dashboard-bot.git
     cd dashboard-bot
     ```
 
-2.  **Bağımlılıkları Yükleyin:**
+2.  **Bagimliliklari Yukleyin:**
+    Proje klasorunun icindeyken su komutu calistirin:
     ```bash
     npm install
     ```
 
-3.  **Çevre Değişkenlerini Ayarlayın:**
-    `.env.local` dosyasını oluşturun ve gerekli bilgileri girin:
+3.  **Cevre Degiskenlerini Ayarlayin:**
+    Proje ana dizininde `.env.local` adinda yeni bir dosya olusturun ve asagidaki bilgileri kendi degerlerinizle doldurun:
     ```env
-    # Supabase Bağlantısı
+    # Supabase Baglantisi
     SUPABASE_URL=https://your-project.supabase.co
     SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 
-    # Güvenlik
+    # Guvenlik
     JWT_SECRET=gizli-anahtariniz
     COOKIE_NAME=auth-token
     GLOBAL_PASSWORD=giris-sifreniz
 
-    # Instagram Bot Ayarları
-    CHECK_TIME=30 # Dakika cinsinden kontrol süresi
+    # Instagram Bot Ayarlari
+    CHECK_TIME=30 # Dakika cinsinden kontrol suresi
     
-    # Proxy Ayarları (Opsiyonel)
+    # Proxy Ayarlari (Opsiyonel - Eger proxy kullanacaksaniz)
     PROXY_HOST=proxy.example.com
     PROXY_PORT=8080
     PROXY_USER=kullanici
     PROXY_PASS=sifre
     ```
 
-4.  **Veritabanını Hazırlayın:**
-    Supabase SQL editöründe `create_users_table.sql` dosyasının içeriğini çalıştırarak gerekli tabloları oluşturun.
+4.  **Veritabanini Hazirlayin:**
+    Supabase panelinize gidin, SQL Editor kismini acin ve projedeki `create_users_table.sql` dosyasinin icerigini kopyalayip calistirin. Bu islem gerekli tablolari olusturacaktir.
 
-5.  **Uygulamayı Başlatın:**
+5.  **Uygulamayi Baslatin:**
+    Her sey hazirsa uygulamayi baslatin:
     ```bash
     npm run dev
     ```
+    Tarayicinizda `http://localhost:3000` adresine giderek uygulamayi gorebilirsiniz.
+
+### Vercel ile Deploy (Canliya Alma)
+
+Bu projeyi Vercel uzerinde kolayca yayinlayabilirsiniz:
+
+1.  GitHub projenizi Vercel hesabinizla baglayin.
+2.  Import Project ekraninda bu repoyu secin.
+3.  **Environment Variables** kismina gelin.
+4.  `.env.local` dosyasindaki TUM degiskenleri (SUPABASE_URL, GLOBAL_PASSWORD vb.) buraya tek tek ekleyin.
+5.  **Deploy** butonuna basin.
+6.  Kurulum tamamlandiginda size verilen URL uzerinden uygulamaya erisebilirsiniz.
 
 ---
 
-## 🇺🇸 English (English)
+## English (English)
 
-### 📌 About Project
+### About Project
 This project is a dashboard application that allows you to manage various bot tools through a modern web interface. With the integrated **Instagram Bot** tool, you can track Instagram users, check their status, and keep database records.
 
-### ✨ Features
+### Features
 
-#### 🖥️ Dashboard & Interface
+#### Dashboard & Interface
 - **Modern UI:** Stylish interface designed with Tailwind CSS and shadcn/ui, supporting Dark Mode.
 - **Responsive Design:** Compatible with mobile and desktop.
 - **Secure Login:** Global password-protected login screen.
 
-#### 🤖 Instagram Bot Tool
+#### Instagram Bot Tool
 - **User Tracking:** Add users to the tracking list with the `/adduser [username]` command.
 - **Auto Check:** Periodically check user statuses with a background service.
 - **Detailed Reporting:** Visual reporting of whether users are active, passive, or deleted.
 - **Chat Interface:** Easy use with Telegram-like command structure and message formatting.
 - **Database Logging:** All user data is securely stored on Supabase.
 
-### 📂 File Structure
+### File Structure
 
 ```
 .
@@ -142,21 +157,23 @@ This project is a dashboard application that allows you to manage various bot to
 └── package.json            # Project dependencies
 ```
 
-### ⚙️ Installation & Configuration
+### Installation & Configuration (Local)
 
 1.  **Clone the Project:**
+    Open your terminal and run the following commands:
     ```bash
     git clone https://github.com/codedbyelif/dashboard-bot.git
     cd dashboard-bot
     ```
 
 2.  **Install Dependencies:**
+    Run this command inside the project folder:
     ```bash
     npm install
     ```
 
 3.  **Setup Environment Variables:**
-    Create a `.env.local` file and enter the required information:
+    Create a `.env.local` file in the root directory and fill it with your own values:
     ```env
     # Supabase Connection
     SUPABASE_URL=https://your-project.supabase.co
@@ -178,16 +195,29 @@ This project is a dashboard application that allows you to manage various bot to
     ```
 
 4.  **Prepare Database:**
-    Run the content of the `create_users_table.sql` file in the Supabase SQL editor to create the necessary tables.
+    Go to your Supabase dashboard, open the SQL Editor, copy the content of `create_users_table.sql` file and run it. This will create the necessary tables.
 
 5.  **Start Application:**
+    Start the development server:
     ```bash
     npm run dev
     ```
+    Visit `http://localhost:3000` in your browser.
+
+### Deployment on Vercel
+
+You can easily deploy this project on Vercel:
+
+1.  Connect your GitHub repository to your Vercel account.
+2.  Select this repository in the Import Project screen.
+3.  Go to the **Environment Variables** section.
+4.  Add ALL variables from your `.env.local` file (SUPABASE_URL, GLOBAL_PASSWORD, etc.) here one by one.
+5.  Click the **Deploy** button.
+6.  Once the deployment is complete, you can access your application via the provided URL.
 
 ---
 
-### 🛠️ Tech Stack
+### Tech Stack
 - **Framework:** [Next.js](https://nextjs.org/)
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
 - **Database:** [Supabase](https://supabase.com/)
@@ -197,4 +227,4 @@ This project is a dashboard application that allows you to manage various bot to
 
 ---
 
-Developed with ❤️ by **@codedbyelif**
+Developed by **@codedbyelif**
