@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   description: "A dark themed dashboard for bot tools",
   icons: {
     icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
   },
 };
 
