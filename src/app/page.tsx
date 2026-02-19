@@ -6,15 +6,40 @@ import { Label } from "@/components/ui/label"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
 
 export default function LoginPage() {
-  const router = useRouter()
+  const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Mock login - just redirect to dashboard
-    router.push("/dashboard")
-  }
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setLoading(true);
+
+    const email = (e.target as any).email.value;
+    const password = (e.target as any).password.value;
+
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Login failed");
+      }
+
+      router.push("/dashboard");
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section className="h-screen bg-muted w-full">
@@ -32,6 +57,7 @@ export default function LoginPage() {
           </Link>
           <div className="flex w-full max-w-sm min-w-sm flex-col items-center gap-y-4 rounded-md border border-muted bg-background px-6 py-8 shadow-md">
             <h1 className="text-xl font-semibold">Login</h1>
+            {error && <div className="text-red-500 text-sm">{error}</div>}
             <form onSubmit={handleLogin} className="flex w-full flex-col gap-2">
               <div className="flex w-full flex-col gap-2">
                 <Label htmlFor="email">Email</Label>
