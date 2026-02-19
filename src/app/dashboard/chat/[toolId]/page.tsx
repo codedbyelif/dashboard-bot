@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { ScrollArea } from "@/components/ui/scroll-area"
+
 import { Send } from "lucide-react"
 import { useEffect, useState, useRef } from "react"
 
@@ -36,7 +36,7 @@ export default function ChatPage({
 
     useEffect(() => {
         if (scrollRef.current) {
-            scrollRef.current.scrollIntoView({ behavior: "smooth" });
+            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
         }
     }, [messages]);
 
@@ -90,19 +90,19 @@ export default function ChatPage({
     };
 
     return (
-        <div className="flex h-full flex-col space-y-4">
-            <div className="flex items-center justify-between space-y-2">
+        <div className="flex h-full flex-col">
+            <div className="flex items-center justify-between space-y-2 p-6 pb-4">
                 <h2 className="text-3xl font-bold tracking-tight capitalize">
                     {toolId.replace("-", " ")} Chat
                 </h2>
             </div>
-            <Card className="flex flex-1 flex-col overflow-hidden">
-                <CardHeader className="border-b px-6 py-4">
-                    <CardTitle>Chat Session</CardTitle>
-                </CardHeader>
-                <CardContent className="flex-1 p-0">
-                    <ScrollArea className="h-full p-6">
-                        <div className="flex flex-col gap-4">
+            <div className="flex-1 px-6 pb-6 overflow-hidden flex flex-col">
+                <Card className="flex flex-1 flex-col overflow-hidden">
+                    <CardHeader className="border-b px-6 py-4">
+                        <CardTitle>Chat Session</CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex-1 p-0 overflow-hidden flex flex-col">
+                        <div className="flex-1 overflow-y-auto p-6 space-y-4" ref={scrollRef}>
                             {messages.length === 0 && (
                                 <div className="flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm bg-muted">
                                     Welcome to {toolId.replace("-", " ")}! How can I assist you today?
@@ -111,34 +111,33 @@ export default function ChatPage({
                             {messages.map((msg, i) => (
                                 <div
                                     key={i}
-                                    className={`flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm ${msg.type === "tool_result" || msg.email === "system"
-                                        ? "bg-muted self-start"
+                                    className={`flex w-fit max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm whitespace-pre-wrap break-words ${msg.type === "tool_result" || msg.email === "system"
+                                        ? "bg-muted self-start font-mono"
                                         : "bg-primary text-primary-foreground self-end ml-auto"
                                         }`}
                                 >
                                     {msg.content}
                                 </div>
                             ))}
-                            <div ref={scrollRef} />
                         </div>
-                    </ScrollArea>
-                </CardContent>
-                <CardFooter className="border-t p-4">
-                    <form onSubmit={sendMessage} className="flex w-full items-center gap-2">
-                        <Input
-                            value={input}
-                            onChange={(e) => setInput(e.target.value)}
-                            placeholder="Type your message..."
-                            className="flex-1"
-                            disabled={loading}
-                        />
-                        <Button type="submit" size="icon" disabled={loading}>
-                            <Send className="h-4 w-4" />
-                            <span className="sr-only">Send</span>
-                        </Button>
-                    </form>
-                </CardFooter>
-            </Card>
+                    </CardContent>
+                    <CardFooter className="border-t p-4">
+                        <form onSubmit={sendMessage} className="flex w-full items-center gap-2">
+                            <Input
+                                value={input}
+                                onChange={(e) => setInput(e.target.value)}
+                                placeholder="Type your message..."
+                                className="flex-1"
+                                disabled={loading}
+                            />
+                            <Button type="submit" size="icon" disabled={loading}>
+                                <Send className="h-4 w-4" />
+                                <span className="sr-only">Send</span>
+                            </Button>
+                        </form>
+                    </CardFooter>
+                </Card>
+            </div>
         </div>
     )
 }
