@@ -16,6 +16,9 @@ const sourceCodePro = Source_Code_Pro({
 export const metadata: Metadata = {
   title: "Dashboard Bot",
   description: "A dark themed dashboard for bot tools",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
