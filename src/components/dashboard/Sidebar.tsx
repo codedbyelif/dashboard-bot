@@ -1,8 +1,9 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, MessageSquare } from "lucide-react"
+import { MessageSquare } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const tools = [
@@ -18,7 +19,9 @@ export function Sidebar() {
         <div className="flex h-full w-64 flex-col border-r bg-card text-card-foreground">
             <div className="flex h-14 items-center border-b px-4">
                 <Link href="/" className="flex items-center gap-2 font-semibold">
-                    <LayoutDashboard className="h-6 w-6" />
+                    <div className="relative h-8 w-8">
+                        <Image src="/logo.png" alt="Logo" fill className="object-contain" />
+                    </div>
                     <span>Dashboard</span>
                 </Link>
             </div>
