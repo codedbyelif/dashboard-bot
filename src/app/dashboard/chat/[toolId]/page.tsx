@@ -1,15 +1,93 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Send } from "lucide-react"
+import { useEffect, useState, useRef } from "react"
 
-export default async function ChatPage({
+interface Message {
+    id?: number;
+    content: string;
+    email: string;
+    tool_name?: string;
+    type: string;
+    created_at?: string;
+}
+
+export default function ChatPage({
     params,
 }: {
-    params: Promise<{ toolId: string }>
+    params: Promise<{ toolId: string }>;
 }) {
-    const { toolId } = await params
+    const [toolId, setToolId] = useState<string>("");
+    const [messages, setMessages] = useState<Message[]>([]);
+    const [input, setInput] = useState("");
+    const [loading, setLoading] = useState(false);
+    const scrollRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        params.then((p) => {
+            setToolId(p.toolId);
+            fetchMessages(p.toolId);
+        });
+    }, [params]);
+
+    useEffect(() => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [messages]);
+
+    const fetchMessages = async (tid: string) => {
+        try {
+            const res = await fetch(`/api/chat/${tid}`);
+            if (res.ok) {
+                const data = await res.json();
+                setMessages(data);
+            }
+        } catch (error) {
+            console.error("Failed to fetch messages", error);
+        }
+    };
+
+    const sendMessage = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!input.trim()) return;
+
+        const newMessage: Message = {
+            content: input,
+            email: "me", // Optimistic update
+            type: "tool_request",
+            tool_name: toolId,
+        };
+
+        setMessages((prev) => [...prev, newMessage]);
+        setInput("");
+        setLoading(true);
+
+        try {
+            const res = await fetch(`/api/chat/${toolId}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    content: newMessage.content,
+                    tool_name: toolId,
+                    type: "tool_request",
+                }),
+            });
+
+            if (res.ok) {
+                // Poll for response or just re-fetch
+                setTimeout(() => fetchMessages(toolId), 1500);
+            }
+        } catch (error) {
+            console.error("Failed to send message", error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <div className="flex h-full flex-col space-y-4">
@@ -25,19 +103,36 @@ export default async function ChatPage({
                 <CardContent className="flex-1 p-0">
                     <ScrollArea className="h-full p-6">
                         <div className="flex flex-col gap-4">
-                            <div className="flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm bg-muted">
-                                Welcome to {toolId.replace("-", " ")}! How can I assist you today?
-                            </div>
-                            <div className="ml-auto flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm bg-primary text-primary-foreground">
-                                I need help with...
-                            </div>
+                            {messages.length === 0 && (
+                                <div className="flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm bg-muted">
+                                    Welcome to {toolId.replace("-", " ")}! How can I assist you today?
+                                </div>
+                            )}
+                            {messages.map((msg, i) => (
+                                <div
+                                    key={i}
+                                    className={`flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm ${msg.type === "tool_result" || msg.email === "system"
+                                        ? "bg-muted self-start"
+                                        : "bg-primary text-primary-foreground self-end ml-auto"
+                                        }`}
+                                >
+                                    {msg.content}
+                                </div>
+                            ))}
+                            <div ref={scrollRef} />
                         </div>
                     </ScrollArea>
                 </CardContent>
                 <CardFooter className="border-t p-4">
-                    <form className="flex w-full items-center gap-2">
-                        <Input placeholder="Type your message..." className="flex-1" />
-                        <Button type="submit" size="icon">
+                    <form onSubmit={sendMessage} className="flex w-full items-center gap-2">
+                        <Input
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                            placeholder="Type your message..."
+                            className="flex-1"
+                            disabled={loading}
+                        />
+                        <Button type="submit" size="icon" disabled={loading}>
                             <Send className="h-4 w-4" />
                             <span className="sr-only">Send</span>
                         </Button>
