@@ -105,7 +105,8 @@ export default function ChatPage({
                         <div className="flex-1 overflow-y-auto p-6 space-y-4" ref={scrollRef}>
                             {messages.length === 0 && (
                                 <div className="flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm bg-muted">
-                                    Welcome to {toolId.replace("-", " ")}! How can I assist you today?
+                                    Welcome to {toolId.replace("-", " ")}! <br />
+                                    Developed by @codedbyelif
                                 </div>
                             )}
                             {messages.map((msg, i) => (
