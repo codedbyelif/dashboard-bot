@@ -15,7 +15,7 @@ const sourceCodePro = Source_Code_Pro({
 
 export const metadata: Metadata = {
   title: "Dashboard Bot",
-  description: "A dark themed dashboard for bot tools",
+  description: "Advanced dashboard bot. Developed by @codedbyelif",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
