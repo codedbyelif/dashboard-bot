@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-import Link from "next/link"
+
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 
@@ -71,12 +71,7 @@ export default function LoginPage() {
               Login
             </Button>
           </form>
-          <div className="flex justify-center gap-1 text-sm text-muted-foreground">
-            <p>Need an account?</p>
-            <Link href="https://shadcnblocks.com" className="font-medium text-primary hover:underline">
-              Sign up
-            </Link>
-          </div>
+
         </div>
       </div>
     </section>
