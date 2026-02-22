@@ -13,16 +13,16 @@ This project is a comprehensive dashboard application that allows you to manage 
 ### Key Features
 
 #### Dashboard & Interface
-![Dashboard Overview](/screenshots/dashboard_overview.png)
+![Dashboard Overview](public/screenshots/dashboard_overview.png)
 - **Modern UI:** A stylish, intuitive interface designed with Tailwind CSS and shadcn/ui.
 - **Dark & Light Mode Support:** High contrast and easily distinguishable design.
 - **Responsive Design:** Fully compatible with both mobile and desktop views, ensuring seamless usability anywhere.
 - **Secure Login:** Global password-protected login screen to prevent unauthorized access.
-![Login Screen](/screenshots/login_screen.png)
+![Login Screen](public/screenshots/login_screen.png)
 - **Sidebar Navigation:** Easy-to-use menu for quickly switching between different dashboard sections.
 
 #### Instagram Bot Tool
-![Chat Interface](/screenshots/chat_interface.png)
+![Chat Interface](public/screenshots/chat_interface.png)
 - **User Tracking:** Add users to the monitoring list effortlessly with the `/adduser [username]` command.
 - **Status Checks:** Run on-demand status checks via the `/check` command.
 - **Automated Background Service:** Periodically verifies user statuses automatically using background services (checking every defined interval).
@@ -148,16 +148,16 @@ Bu proje, modern bir web arayuzu uzerinden cesitli bot araclarini yonetmenizi sa
 ### Temel Ozellikler
 
 #### Dashboard & Arayuz
-![Kontrol Paneli](/screenshots/dashboard_overview.png)
+![Kontrol Paneli](public/screenshots/dashboard_overview.png)
 - **Modern UI:** Tailwind CSS ve shadcn/ui ile tasarlanmis sik, anlasilir ve kullanici dostu bir arayuz.
 - **Dark & Light Mode (Karanlik ve Aydinlik Mod):** Kolay okunabilirlik saglayan arayuz temalari.
 - **Responsive (Duyarli) Tasarim:** Hem mobil telefonlarda hem de bilgisayar ekranlarinda kusursuz gorunum.
 - **Guvenli Giris:** Tek bir master sifre (Global Password) ile korunan guvenli yetkilendirme sistemi.
-![Giris Ekrani](/screenshots/login_screen.png)
+![Giris Ekrani](public/screenshots/login_screen.png)
 - **Kenar Cubugu:** Sayfalar ve uygulamalar arasinda hizli gecis yapmanizi saglayan modern menu sistemi.
 
 #### Instagram Bot Araci
-![Sohbet Ekrani](/screenshots/chat_interface.png)
+![Sohbet Ekrani](public/screenshots/chat_interface.png)
 - **Kullanici Takibi:** Kullanicilari `/adduser [kullanici_adi]` komutu ile kolayca takip listesine dahil etme.
 - **Durum Analizi:** `/check` komutu ile tum listeyi istediginiz zaman elle tarama.
 - **Otomatik Arka Plan Servisi:** Tanimlanan araliklarla arka planda kendiliginden calisan durum kontrol mekanizmasi.
